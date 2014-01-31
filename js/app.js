@@ -21,6 +21,29 @@ $(window).load(function() {
 	imagesReady = true;
 	//enablestart();
 	
+});
+
+$(document).ready(function() {
+	prepareDomAndStart();
+});
+
+
+function prepareDomAndStart() {
+	// create canvases for all the faces
+	window.imageCanvases = {};
+	for (var i = 0;i < images.length;i++) {
+		//console.log($("#"+images[i]));
+		$("#"+images[i]).load(function(obj) {
+			var elementId = obj.target.id;
+			// copy the images to canvases
+			imagecanvas = document.createElement('CANVAS');
+			imagecanvas.width = obj.target.width;
+			imagecanvas.height = obj.target.height;
+			imagecanvas.getContext('2d').drawImage(obj.target,0,0);
+			imageCanvases[elementId] = imagecanvas;
+		});
+	}
+
 	$('#container').fadeIn(2000, function() {
 		$('#container').removeClass('blur');
 		setTimeout(function() {
@@ -28,7 +51,7 @@ $(window).load(function() {
 		}, 2000);
 		startVideo();
 	});
-});
+}
 
 var insertAltVideo = function(video) {
 	if (supports_video()) {
@@ -150,23 +173,7 @@ videocanvas.height = vid.height;
 var maskcanvas = document.createElement('CANVAS');
 maskcanvas.width = vid.width;
 maskcanvas.height = vid.height;	
-// create canvases for all the faces
-window.imageCanvases = {};
-for (var i = 0;i < images.length;i++) {
-	console.log($("#"+images[i]));
-	$("#"+images[i]).load(function(obj) {
-		var elementId = obj.target.id;
 
-		// copy the images to canvases
-		imagecanvas = document.createElement('CANVAS');
-		imagecanvas.width = obj.target.width;
-		imagecanvas.height = obj.target.height;
-		imagecanvas.getContext('2d').drawImage(obj.target,0,0);
-		imageCanvases[elementId] = imagecanvas;
-
-		console.log(elementId, imageCanvases);
-	});
-}
 
 var extended_vertices = [
   [0,71,72,0],
@@ -262,9 +269,15 @@ function switchMasks(pos) {
 	// also need to make new vertices incorporating area outside mask
 	var newVertices = pModel.path.vertices.concat(extended_vertices);
 
-	console.log(imageCanvases[images[currentMask]]);
+	//console.log(imageCanvases[images[currentMask]]);
 
 	// deform the mask we want to use to face form
+
+	if (typeof(imageCanvases[images[currentMask]]) === "undefined") {
+		throw new Error('imageCanvas element wasn\'t ready!');
+		return false;
+	}
+
 	fd2.load(imageCanvases[images[currentMask]], newMaskPos, pModel, newVertices);
 	fd2.draw(newFacePos);
 	// and copy onto new canvas

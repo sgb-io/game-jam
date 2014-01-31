@@ -20,6 +20,11 @@ var faceDeformer = function() {
   }
 
   this.load = function(element, points, pModel, vertices) {
+
+    if (typeof(element) === "undefined" || element.length === 0) {
+      throw new Error('faceDeformer element wasn\'t ready!');
+    }
+
     pdmModel = pModel;
     if (vertices) {
       verticeMap = vertices;
