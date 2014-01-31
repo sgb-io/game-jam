@@ -47,6 +47,20 @@ function drawLoop() {
 	}
 }
 
+function useSampleImage(sample) {
+	if (sample) {
+		cc.clearRect(0,0,600,450);
+		var img = new Image(),
+			imgWidth = $('#'+sample).attr('width'),
+			imgHeight = $('#'+sample).attr('height');
+
+		img.onload = function() {
+			cc.drawImage(img,0,0,imgWidth,imgHeight);
+		};
+		img.src = 'img/'+sample+'.jpg';
+	}
+}
+
 // function to start showing images
 function loadImage() {
 	if (fileList.indexOf(fileIndex) < 0) {
