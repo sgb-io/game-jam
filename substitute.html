@@ -29,21 +29,30 @@
 
   <body>
 
-    <!-- Detect face from image -->
-    <div id="convergence_container">
-        <canvas id="convergence_image" width="625" height="500"></canvas>
-        <canvas id="convergence_overlay" width="625" height="500"></canvas>
+    <!-- Substitute face (webcam) -->
+    <div id="video_wrapper">
+      <div id="container" class="sepia blur">
+        <video id="videoel" width="400" height="300" preload="auto"></video>
+        <canvas id="overlay" width="400" height="300"></canvas>
+        <canvas id="webgl" width="400" height="300"></canvas>
+      </div>
+      <div class="widescreen_left"></div>
+      <div class="widescreen_right"></div>
+      <div class="widescreen_top"></div>
+      <div class="widescreen_bottom"></div>
+      <div class="video-message">Applying make-up...</div>
     </div>
-    
-    <div id="upload_controls">
-        <input type="button" class="btn" value="start" onclick="animate()"></input>
-        <input type="file" class="btn" id="files" name="files[]" />
-        <a href="substitute.html">Continue</a>
+    <canvas id="webgl2" width="400" height="300"></canvas>
+    <img id="demo" class="masks" src="/img/demo_face.png"/>
+
+    <div id="faceMasks">
+      <img id="walter" class="masks" src="/img/walter_crop_small_light.jpg"/>
     </div>
+
 
     <script src="js/jquery-2.1.0.min.js"></script>
-
-    <script src="js/face_select.js"></script>
+    
+    <script src="js/face_sub.js"></script>
     <script src="js/app.js"></script>
 
   </body>

@@ -16,6 +16,14 @@ function enablestart() {
 }
 
 function initializeFaceSubbing() {
+
+	var uploadedFaceImg = localStorage.getItem('uploaded_face'),
+		uploadedFaceCoords = JSON.parse(localStorage.getItem('uploaded_face_coords'));
+
+	var uploadedFaceImgTag = '<img id="upload" class="masks" src="'+uploadedFaceImg+'"/>';
+	$('#faceMasks').append(uploadedFaceImgTag);
+	masks.upload = uploadedFaceCoords;
+
 	// create canvases for all the faces
 	window.imageCanvases = {};
 	for (var i = 0;i < images.length;i++) {	
@@ -155,8 +163,8 @@ var masks = {
 
 
 
-var images = ["walter", "demo"];
-var currentMask = 0;
+var images = ["walter", "demo", "upload"];
+var currentMask = 2; //use upload only
 
 // canvas for copying the warped face to
 var newcanvas = document.createElement('CANVAS');

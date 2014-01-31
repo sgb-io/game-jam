@@ -2,11 +2,31 @@ var cc = document.getElementById('convergence_image').getContext('2d');
 var overlay = document.getElementById('convergence_overlay');
 var overlayCC = overlay.getContext('2d');
 
-var img = new Image();
-img.onload = function() {
-	cc.drawImage(img,0,0,625, 500);
-};
-img.src = '/img/demo_face.png';
+// var img = new Image();
+// img.onload = function() {
+// 	cc.drawImage(img,0,0,625, 500);
+// };
+// img.src = '/img/walter_crop_small_light.jpg';
+
+// detect if tracker fails to find a face
+document.addEventListener("clmtrackrNotFound", function(event) {
+	ctrack_detect.stop();
+	alert("The tracking had problems with finding a face in this image. Try a different image, or a different crop.")
+}, false);
+
+// detect if tracker loses tracking of face
+document.addEventListener("clmtrackrLost", function(event) {
+	ctrack_detect.stop();
+	alert("The tracking had problems converging on a face in this image. Try a different image, or a different crop.")
+}, false);
+
+// detect if tracker has converged
+document.addEventListener("clmtrackrConverged", function(event) {
+	localStorage.setItem('uploaded_face_coords', JSON.stringify(ctrack_detect.getCurrentPosition()));
+	// stop drawloop
+	cancelRequestAnimFrame(drawRequest);
+}, false);
+
 
 var ctrack_detect = new clm.tracker({stopOnConvergence : true});
 ctrack_detect.init(pModel);
@@ -26,44 +46,7 @@ function drawLoop() {
 	}
 }
 
-// detect if tracker fails to find a face
-document.addEventListener("clmtrackrNotFound", function(event) {
-	ctrack_detect.stop();
-	alert("The tracking had problems with finding a face in this image. Try selecting the face in the image manually.")
-}, false);
 
-// detect if tracker loses tracking of face
-document.addEventListener("clmtrackrLost", function(event) {
-	ctrack_detect.stop();
-	alert("The tracking had problems converging on a face in this image. Try selecting the face in the image manually.")
-}, false);
-
-// detect if tracker has converged
-document.addEventListener("clmtrackrConverged", function(event) {
-	alert('got co-ords for dis face!')
-	// stop drawloop
-	cancelRequestAnimFrame(drawRequest);
-}, false);
-
-// manual selection of faces (with jquery imgareaselect plugin)
-function selectBox() {
-	overlayCC.clearRect(0, 0, 720, 576);
-	//document.getElementById('convergence').innerHTML = "";
-	ctrack_detect.reset();
-	$('#convergence_overlay').addClass('hide');
-	$('#convergence_image').imgAreaSelect({
-		handles : true,
-		onSelectEnd : function(img, selection) {
-			// create box
-			var box = [selection.x1, selection.y1, selection.width, selection.height];
-			
-			// do fitting
-			animate(box);
-			$('#overlay').removeClass('hide');
-		},
-		autoHide : true
-	});
-}
 
 // function to start showing images
 function loadImage() {
@@ -71,7 +54,12 @@ function loadImage() {
 		var reader = new FileReader();
 		reader.onload = (function(theFile) {
 			return function(e) {
-				// check if positions already exist in storage
+
+				//wipe localstorage
+				localStorage.clear();
+
+				// store uploaded pic in localstorage for use on face sub page.
+				localStorage.setItem('uploaded_face', e.target.result);
 			
 				// Render thumbnail.
 				var canvas = document.getElementById('convergence_image')
@@ -100,7 +88,6 @@ function loadImage() {
 		})(fileList[fileIndex]);
 		reader.readAsDataURL(fileList[fileIndex]);
 		overlayCC.clearRect(0, 0, 720, 576);
-		//document.getElementById('convergence').innerHTML = "";
 		ctrack_detect.reset();
 	}
 
