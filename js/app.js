@@ -31,17 +31,14 @@ $(document).ready(function() {
 function prepareDomAndStart() {
 	// create canvases for all the faces
 	window.imageCanvases = {};
-	for (var i = 0;i < images.length;i++) {
-		//console.log($("#"+images[i]));
-		$("#"+images[i]).load(function(obj) {
-			var elementId = obj.target.id;
-			// copy the images to canvases
-			imagecanvas = document.createElement('CANVAS');
-			imagecanvas.width = obj.target.width;
-			imagecanvas.height = obj.target.height;
-			imagecanvas.getContext('2d').drawImage(obj.target,0,0);
-			imageCanvases[elementId] = imagecanvas;
-		});
+	for (var i = 0;i < images.length;i++) {	
+		var ele = document.getElementById(images[i]);
+		// copy the images to canvases
+		imagecanvas = document.createElement('CANVAS');
+		imagecanvas.width = ele.width;
+		imagecanvas.height = ele.height;
+		imagecanvas.getContext('2d').drawImage(ele,0,0);
+		imageCanvases[images[i]] = imagecanvas;
 	}
 
 	$('#container').fadeIn(2000, function() {
@@ -51,6 +48,7 @@ function prepareDomAndStart() {
 		}, 2000);
 		startVideo();
 	});
+		
 }
 
 var insertAltVideo = function(video) {

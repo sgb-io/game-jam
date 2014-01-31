@@ -5,7 +5,8 @@
 }
 
 body {	
-	background-image: radial-gradient(at 50% 50%, rgb(28, 28, 28) 0%, rgb(63, 63, 63) 100%);
+	//background-image: radial-gradient(at 50% 50%, rgb(28, 28, 28) 0%, rgb(63, 63, 63) 100%);
+	background-image: radial-gradient(at 50% 50%, rgb(255, 0, 84) 0%, rgb(170, 0, 56) 100%);
 	margin: 0px auto;
 	max-width: 1150px;
 }
