@@ -20,7 +20,12 @@ function enablestart() {
 $(window).load(function() {
 	imagesReady = true;
 	//enablestart();
+	
 	$('#container').fadeIn(2000, function() {
+		$('#container').removeClass('blur');
+		setTimeout(function() {
+			$('.video-message').fadeOut();
+		}, 2000);
 		startVideo();
 	});
 });
