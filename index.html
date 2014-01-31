@@ -28,16 +28,20 @@
 
   <body>
 
-    <div id="container">
-      <video id="videoel" width="400" height="300" preload="auto"></video>
-      <canvas id="overlay" width="400" height="300"></canvas>
-      <canvas id="webgl" width="400" height="300"></canvas>
+    <div id="video_wrapper">
+      <div id="container">
+        <video id="videoel" width="400" height="300" preload="auto"></video>
+        <canvas id="overlay" width="400" height="300"></canvas>
+        <canvas id="webgl" width="400" height="300"></canvas>
+        <div class="widescreen_top"></div>
+        <div class="widescreen_bottom"></div>
+      </div>
     </div>
 
     <canvas id="webgl2" width="400" height="300"></canvas>
     <img id="walter" class="masks" src="/img/walter_crop_small.jpg"/>
 
-    <input class="btn" type="button" value="wait, loading video & images" disabled="disabled" onclick="startVideo()" id="startbutton"></input>
+    <!-- <input class="btn" type="button" value="wait, loading video & images" disabled="disabled" onclick="startVideo()" id="startbutton"></input> -->
 
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="js/app.js"></script>

@@ -19,8 +19,10 @@ function enablestart() {
 
 $(window).load(function() {
 	imagesReady = true;
-	//wait for twitter pic grabbed
-	enablestart();
+	//enablestart();
+	$('#container').fadeIn(2000, function() {
+		startVideo();
+	});
 });
 
 var insertAltVideo = function(video) {
@@ -82,7 +84,10 @@ if (navigator.getUserMedia) {
 	alert("Your browser does not seem to support getUserMedia, using a fallback video instead.");
 }
 
-vid.addEventListener('canplay', function() {videoReady = true;enablestart();}, false);
+vid.addEventListener('canplay', function() {
+	videoReady = true;
+	//enablestart();
+}, false);
 
 /*********** Code for face substitution *********/
 

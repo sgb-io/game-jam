@@ -30,11 +30,20 @@ body {
 
 	width : 600px;
 	height : 450px;
+
+	background: #000;
+	//-webkit-transform: scaleX(-1) rotateZ(-5deg) rotateY(-5deg) rotatex(-5deg);
+}
+
+#video_wrapper {
+
 }
 
 #container {
 	position : relative;
 	width : 370px;
+	-webkit-filter: sepia(60%);
+	display: none;
 }
 
 #content {
@@ -67,4 +76,19 @@ h2 {
 
 #controls {
 	text-align : center;
+}
+
+.widescreen_top, .widescreen_bottom {
+	position: absolute;
+	background: #000;
+	width: 600px;
+	height: 80px;
+}
+
+.widescreen_top {
+	top: 0;
+}
+
+.widescreen_bottom {
+	bottom: 0;
 }
