@@ -132,3 +132,8 @@ if (window.File && window.FileReader && window.FileList && window.FileError) {
 	$('#files').addClass("hide");
 	//$('#loadimagetext').addClass("hide");
 }
+
+$('.samples').on('change', function(e) {
+	var sample = $(this).val();
+	useSampleImage(sample);
+})
