@@ -6,7 +6,7 @@
 
 body {	
 	//background-image: radial-gradient(at 50% 50%, rgb(28, 28, 28) 0%, rgb(63, 63, 63) 100%);
-	background-image: radial-gradient(at 50% 50%, rgb(255, 0, 84) 0%, rgb(170, 0, 56) 100%);
+	//background-image: radial-gradient(at 50% 50%, rgb(255, 0, 84) 0%, rgb(170, 0, 56) 100%);
 	margin: 0px auto;
 	max-width: 1150px;
 }
@@ -139,4 +139,33 @@ h2 {
 
 .widescreen_right {
 	right: 0;
+}
+
+
+
+/* Face detection */
+
+#convergence_container {
+	overflow: hidden;
+	width: 800px;
+	height: 600px;
+	margin: 30px auto;
+	position: absolute;
+}
+
+#convergence_image {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+#convergence_overlay{
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+#upload_controls {
+	position: absolute;
+	top: 550px;
 }

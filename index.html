@@ -23,11 +23,27 @@
     <script src="js/clmtrackr/clmtrackr.min.js"></script>
     <script src="js/clmtrackr/models/model_pca_20_svm.js"></script>
     <script src="js/utils.js"></script>
+    <script src="js/Filesaver.min.js"></script>
 
   </head>
 
   <body>
 
+
+    <!-- Detect face from image -->
+    <div id="convergence_container">
+        <canvas id="convergence_image" width="625" height="500"></canvas>
+        <canvas id="convergence_overlay" width="625" height="500"></canvas>
+    </div>
+    
+    <div id="upload_controls">
+        <input type="button" class="btn" value="start" onclick="animate()"></input>
+        <input type="button" class="btn" value="manually select face" onclick="selectBox()"></input>
+        <input type="file" class="btn" id="files" name="files[]" />
+    </div>
+
+
+    <!-- Substitute face (webcam) -->
     <div id="video_wrapper">
       <div id="container" class="sepia blur">
         <video id="videoel" width="400" height="300" preload="auto"></video>
@@ -42,11 +58,17 @@
     </div>
 
     <canvas id="webgl2" width="400" height="300"></canvas>
+    <img id="demo" class="masks" src="/img/demo_face.png"/>
     <img id="walter" class="masks" src="/img/walter_crop_small_light.jpg"/>
 
     <!-- <input class="btn" type="button" value="wait, loading video & images" disabled="disabled" onclick="startVideo()" id="startbutton"></input> -->
 
-    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="js/jquery-2.1.0.min.js"></script>
+    
+    
+    <!--<script src="js/face_sub.js"></script>-->
+    <script src="js/face_select.js"></script>
+
     <script src="js/app.js"></script>
 
   </body>
