@@ -5,7 +5,7 @@
 }
 
 body {	
-	background-color: #f0f0f0;
+	background-image: radial-gradient(at 50% 50%, rgb(28, 28, 28) 0%, rgb(63, 63, 63) 100%);
 	margin: 0px auto;
 	max-width: 1150px;
 }
@@ -20,8 +20,8 @@ body {
 	-ms-filter : fliph; /*IE*/
 	filter : fliph; /*IE*/
 
-	width : 600px;
-	height : 450px;
+	width: 800px;
+	height: 600px;
 }
 
 #videoel {
@@ -30,22 +30,27 @@ body {
 	transform : scaleX(-1);
 	-ms-filter : fliph; /*IE*/
 	filter : fliph; /*IE*/
-	width : 600px;
-	height : 450px;
+	width: 800px;
+	height: 600px;
 	background: #000;
-	
+
 	//-webkit-transform: scaleX(-1) rotateZ(-5deg) rotateY(-5deg) rotatex(-5deg);
 }
 
 #video_wrapper {
-	width: 600px;
-	height: 455px;
+	width: 800px;
+	height: 600px;
 	position: absolute;
+	margin-top: 150px;
+	overflow: hidden;
+	left: 50%;
+	margin-left: -400px;
 }
 
 #container {
 	position : relative;
-	width : 370px;
+	width : 800px;
+	overflow: hidden;
 	-webkit-transition:-webkit-filter 2s linear;    
 }
 
@@ -75,7 +80,7 @@ body {
 	margin-top : 50px;
 	margin-left : auto;
 	margin-right : auto;
-	max-width: 600px;
+	max-width: 800px;
 }
  
 #sketch {
@@ -106,7 +111,7 @@ h2 {
 .widescreen_top, .widescreen_bottom {
 	position: absolute;
 	background: #000;
-	width: 600px;
+	width: 800px;
 	height: 80px;
 	z-index: 10;
 }
@@ -121,7 +126,7 @@ h2 {
 
 .widescreen_left, .widescreen_right {
 	width: 10px;
-	height: 450px;
+	height: 600px;
 	background: #000;
 	position: absolute;
 	top: 0;
