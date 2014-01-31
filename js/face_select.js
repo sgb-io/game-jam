@@ -23,6 +23,7 @@ document.addEventListener("clmtrackrLost", function(event) {
 // detect if tracker has converged
 document.addEventListener("clmtrackrConverged", function(event) {
 	localStorage.setItem('uploaded_face_coords', JSON.stringify(ctrack_detect.getCurrentPosition()));
+	$('.upload-continue').removeClass('hide');
 	// stop drawloop
 	cancelRequestAnimFrame(drawRequest);
 }, false);
@@ -45,8 +46,6 @@ function drawLoop() {
 		ctrack_detect.draw(overlay);
 	}
 }
-
-
 
 // function to start showing images
 function loadImage() {

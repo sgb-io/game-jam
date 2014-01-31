@@ -1,14 +1,11 @@
 @import url(https://fonts.googleapis.com/css?family=Allan:400,700);
 
-* {
-	font-family: 'Allan', cursive;
-}
-
 body {	
-	//background-image: radial-gradient(at 50% 50%, rgb(28, 28, 28) 0%, rgb(63, 63, 63) 100%);
-	//background-image: radial-gradient(at 50% 50%, rgb(255, 0, 84) 0%, rgb(170, 0, 56) 100%);
+	font-family: 'Allan', cursive;
 	margin: 0px auto;
 	max-width: 1150px;
+	background: #000;
+	color: #fff;
 }
 
 #overlay, #webgl {
@@ -96,11 +93,6 @@ h2 {
 	display: none;
 }
 
-.btn {
-	font-family: 'Lato';
-	font-size: 16px;
-}
-
 #webgl2 {
 	display : none;
 }
@@ -141,16 +133,21 @@ h2 {
 	right: 0;
 }
 
+h4, h5, h6, p, span, a, input {
+	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+}
 
 
 /* Face detection */
 
 #convergence_container {
 	overflow: hidden;
-	width: 800px;
-	height: 600px;
+	width: 600px;
+	height: 450px;
 	margin: 30px auto;
 	position: absolute;
+	left: 700px;
+	background: #fff;
 }
 
 #convergence_image {
@@ -168,4 +165,44 @@ h2 {
 #upload_controls {
 	position: absolute;
 	top: 550px;
+	text-align: center;
+	margin-left: 85px;
+}
+
+.upload-continue.hide {
+	display: none;
+}
+
+.jumbotron {
+	background: url('/img/banner.jpg') top left no-repeat;
+	width: 1180px;
+	height: 270px;
+}
+
+.row {
+	margin-left: -15px;
+	margin-right: -15px;
+	margin-bottom: 15px;
+	border-bottom: 1px solid #333;
+	padding-bottom: 10px;
+}
+
+.upload-continue {
+	padding: 10px;
+	display: block;
+	margin-top: 60px;
+	font-size: 28px;
+}
+
+#upload_controls .file-upload {
+	width: 200px;
+	padding: 5px 0;
+	margin: 15px 0 15px 20px;
+	line-height: 12px;
+}
+
+h3, h4, h5, h6 {
+	font-family: helvetica neue;
+	font-size: 16px;
+	font-weight: 200;
 }
