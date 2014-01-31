@@ -59,6 +59,9 @@ function loadImage() {
 
 				// store uploaded pic in localstorage for use on face sub page.
 				localStorage.setItem('uploaded_face', e.target.result);
+
+				$('.uploadCol').removeClass('active');
+				$('.startCol').addClass('active');
 			
 				// Render thumbnail.
 				var canvas = document.getElementById('convergence_image')

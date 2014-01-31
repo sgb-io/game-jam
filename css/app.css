@@ -39,7 +39,7 @@ body {
 	width: 800px;
 	height: 600px;
 	position: absolute;
-	margin-top: 150px;
+	margin-top: 20px;
 	overflow: hidden;
 	left: 50%;
 	margin-left: -400px;
@@ -135,6 +135,21 @@ h2 {
 
 h4, h5, h6, p, span, a, input {
 	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+}
+
+.go-back {
+	margin: 0 auto;
+	display: block;
+	width: 100px;
+	font-size: 20px;
+}
+
+.col-md-4 {
+	opacity: 0.4;
+}
+
+.col-md-4.active {
+	opacity: 1;
 }
 
 
