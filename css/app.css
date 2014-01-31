@@ -189,7 +189,7 @@ h4, h5, h6, p, span, a, input {
 }
 
 .jumbotron {
-	background: url('/img/banner.jpg') top left no-repeat;
+	background: url('../img/banner.jpg') top left no-repeat;
 	width: 1180px;
 	height: 270px;
 }
