@@ -45,7 +45,7 @@ function animate(box) {
 
 function drawLoop() {
 	drawRequest = requestAnimFrame(drawLoop);
-	overlayCC.clearRect(0, 0, 720, 576);
+	overlayCC.clearRect(0, 0, 600, 450);
 	if (ctrack_detect.getCurrentPosition()) {
 		ctrack_detect.draw(overlay);
 	}

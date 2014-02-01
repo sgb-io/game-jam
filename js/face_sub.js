@@ -256,7 +256,7 @@ function drawGridLoop() {
 	// get position of face
 	positions = ctrack.getCurrentPosition(vid);
 
-	overlayCC.clearRect(0, 0, 500, 375);
+	overlayCC.clearRect(0, 0, 800, 600);
 	if (positions) {
 		// draw current grid
 		ctrack.draw(overlay);
@@ -338,7 +338,7 @@ function drawMaskLoop() {
 		positions[i][1] += 1;
 	}*/
 
-	overlayCC.clearRect(0, 0, 400, 300);
+	overlayCC.clearRect(0, 0, 800, 600);
 	if (positions) {
 		// draw mask on top of face
 		fd.draw(positions);
@@ -361,3 +361,8 @@ function createMasking(canvas, modelpoints) {
 	cc.fillStyle="#ffffff";
 	cc.fill();
 }
+
+
+function onFocus(){
+	console.log('focus!');
+};
