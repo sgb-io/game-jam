@@ -103,6 +103,17 @@ if (navigator.getUserMedia) {
 			vid.src = (window.URL && window.URL.createObjectURL(stream)) || stream;
 		}
 		vid.play();
+
+		//Webcam permission granted, do video effects now.
+		$(document).ready(function() {
+			$('.video-message').html('Applying make-up...');
+			if (typeof(initializeFaceSubbing) !== "undefined") {
+				initializeFaceSubbing();
+			} else {
+				$('#video_wrapper').hide();
+			}
+		});
+
 	}, function() {
 		insertAltVideo(vid);
 		alert("There was some problem trying to fetch video from your webcam, using a fallback video instead.");
