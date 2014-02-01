@@ -106,6 +106,18 @@ if (navigator.getUserMedia) {
 
 		//Webcam permission granted, do video effects now.
 		$(document).ready(function() {
+
+			//Seems to be a browser bug where switching tabs with the -webkit-filter applied makes
+			//the canvas go a weird small size, but moving anything fixes it.
+			//fixed by removing excluding the blur on re-apply, plus removing the transition.
+			$(window).blur(function(){
+				$('#container').removeClass('sepia');
+			});
+			$(window).focus(function(){
+				console.log('focus!');
+				$('#container').addClass('sepia-no-blur');
+			});
+
 			$('.video-message').html('Applying make-up...');
 			if (typeof(initializeFaceSubbing) !== "undefined") {
 				initializeFaceSubbing();
