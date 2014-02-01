@@ -48,6 +48,7 @@ function drawLoop() {
 }
 
 function useSampleImage(sample) {
+	localStorage.clear();
 	if (sample) {
 		cc.clearRect(0,0,600,450);
 		var img = new Image(),
@@ -56,6 +57,9 @@ function useSampleImage(sample) {
 
 		img.onload = function() {
 			cc.drawImage(img,0,0,imgWidth,imgHeight);
+			var canvas = document.getElementById('convergence_image')
+			//console.log(canvas.toDataURL());
+			localStorage.setItem('uploaded_face', canvas.toDataURL());
 		};
 		img.src = 'img/'+sample+'.jpg';
 	}

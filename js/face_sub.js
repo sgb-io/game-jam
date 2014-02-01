@@ -20,6 +20,12 @@ function initializeFaceSubbing() {
 	var uploadedFaceImg = localStorage.getItem('uploaded_face'),
 		uploadedFaceCoords = JSON.parse(localStorage.getItem('uploaded_face_coords'));
 
+	if (uploadedFaceImg === null) {
+		alert('Oops, the image wasn\'t saved correctly in step 1.');
+		throw new Error("Image data wasn't saved correctly in step 1.");
+		return;
+	}
+
 	var uploadedFaceImgTag = '<img id="upload" class="masks" src="'+uploadedFaceImg+'"/>';
 	$('#faceMasks').append(uploadedFaceImgTag);
 	masks.upload = uploadedFaceCoords;
