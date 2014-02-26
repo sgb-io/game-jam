@@ -167,18 +167,19 @@ h4, h5, h6, p, span, a, input {
 	height: 450px;
 	margin: 30px auto;
 	position: absolute;
-	left: 1200px;
+	float: left;
 	background: #fff;
+	margin-left: 500px;
 }
 
 #convergence_image {
-	position: absolute;
+	position: relative;
 	top: 0;
 	left: 0;
 }
 
 #convergence_overlay{
-	position: absolute;
+	position: relative;
 	top: 0;
 	left: 0;
 }
