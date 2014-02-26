@@ -180,7 +180,7 @@ h4, h5, h6, p, span, a, input {
 
 #convergence_overlay{
 	position: relative;
-	top: 0;
+	top: -450px;
 	left: 0;
 }
 
