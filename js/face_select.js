@@ -58,6 +58,17 @@ function useSampleImage(sample) {
 			cc.drawImage(img,0,0,imgWidth,imgHeight);
 		};
 		img.src = 'img/'+sample+'.jpg';
+
+		var canvas = document.getElementById('convergence_image');
+		var imgString = canvas.toDataURL();
+
+		console.log(imgString);
+
+		//wipe localstorage
+		localStorage.clear();
+
+		// store uploaded pic in localstorage for use on face sub page.
+		localStorage.setItem('uploaded_face', imgString);
 	}
 }
 
