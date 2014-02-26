@@ -20,6 +20,12 @@ function initializeFaceSubbing() {
 	var uploadedFaceImg = localStorage.getItem('uploaded_face'),
 		uploadedFaceCoords = JSON.parse(localStorage.getItem('uploaded_face_coords'));
 
+	if (uploadedFaceImg === null) {
+		alert('Oops, the image wasn\'t saved correctly in step 1.');
+		throw new Error("Image data wasn't saved correctly in step 1.");
+		return;
+	}
+
 	var uploadedFaceImgTag = '<img id="upload" class="masks" src="'+uploadedFaceImg+'"/>';
 	$('#faceMasks').append(uploadedFaceImgTag);
 	masks.upload = uploadedFaceCoords;
@@ -97,6 +103,29 @@ if (navigator.getUserMedia) {
 			vid.src = (window.URL && window.URL.createObjectURL(stream)) || stream;
 		}
 		vid.play();
+
+		//Webcam permission granted, do video effects now.
+		$(document).ready(function() {
+
+			//Seems to be a browser bug where switching tabs with the -webkit-filter applied makes
+			//the canvas go a weird small size, but moving anything fixes it.
+			//fixed by removing excluding the blur on re-apply, plus removing the transition.
+			$(window).blur(function(){
+				$('#container').removeClass('sepia');
+			});
+			$(window).focus(function(){
+				console.log('focus!');
+				$('#container').addClass('sepia-no-blur');
+			});
+
+			$('.video-message').html('Applying make-up...');
+			if (typeof(initializeFaceSubbing) !== "undefined") {
+				initializeFaceSubbing();
+			} else {
+				$('#video_wrapper').hide();
+			}
+		});
+
 	}, function() {
 		insertAltVideo(vid);
 		alert("There was some problem trying to fetch video from your webcam, using a fallback video instead.");
@@ -239,7 +268,7 @@ function drawGridLoop() {
 	// get position of face
 	positions = ctrack.getCurrentPosition(vid);
 
-	overlayCC.clearRect(0, 0, 500, 375);
+	overlayCC.clearRect(0, 0, 800, 600);
 	if (positions) {
 		// draw current grid
 		ctrack.draw(overlay);
@@ -321,7 +350,7 @@ function drawMaskLoop() {
 		positions[i][1] += 1;
 	}*/
 
-	overlayCC.clearRect(0, 0, 400, 300);
+	overlayCC.clearRect(0, 0, 800, 600);
 	if (positions) {
 		// draw mask on top of face
 		fd.draw(positions);
@@ -344,3 +373,8 @@ function createMasking(canvas, modelpoints) {
 	cc.fillStyle="#ffffff";
 	cc.fill();
 }
+
+
+function onFocus(){
+	console.log('focus!');
+};

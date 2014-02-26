@@ -52,6 +52,7 @@ body {
 	-webkit-transition:-webkit-filter 2s linear;    
 }
 
+
 .video-message {
 	z-index: 100;
 	position: absolute;
@@ -64,6 +65,11 @@ body {
 	font-size: 46px;
 	text-align: center;
 	padding: 10px;
+}
+
+#container.sepia-no-blur {
+	-webkit-transition: none;  
+	-webkit-filter: sepia(70%);
 }
 
 #container.sepia {
@@ -134,7 +140,7 @@ h2 {
 }
 
 h4, h5, h6, p, span, a, input {
-	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+	font-family: 'Helvetica Neue', 'Helvetica', arial, sans-serif;
 }
 
 .go-back {
@@ -217,7 +223,7 @@ h4, h5, h6, p, span, a, input {
 }
 
 h3, h4, h5, h6 {
-	font-family: helvetica neue;
+	font-family: helvetica neue, arial, sans-serif;
 	font-size: 16px;
 	font-weight: 200;
 }
@@ -227,4 +233,5 @@ h3, h4, h5, h6 {
 	width: 100%;
 	font-size: 16px;
 	margin: 20px 0;
+	color: #000;
 }

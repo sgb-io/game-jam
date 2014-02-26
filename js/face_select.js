@@ -2,22 +2,22 @@ var cc = document.getElementById('convergence_image').getContext('2d');
 var overlay = document.getElementById('convergence_overlay');
 var overlayCC = overlay.getContext('2d');
 
-// var img = new Image();
-// img.onload = function() {
-// 	cc.drawImage(img,0,0,625, 500);
-// };
-// img.src = '/img/walter_crop_small_light.jpg';
+if (window.localStorage) {
+	localStorage.clear();
+}
 
 // detect if tracker fails to find a face
 document.addEventListener("clmtrackrNotFound", function(event) {
 	ctrack_detect.stop();
-	alert("The tracking had problems with finding a face in this image. Try a different image, or a different crop.")
+	alert("The tracking had problems with finding a face in this image. Try a different image, or a different crop.");
+	location.reload();
 }, false);
 
 // detect if tracker loses tracking of face
 document.addEventListener("clmtrackrLost", function(event) {
 	ctrack_detect.stop();
-	alert("The tracking had problems converging on a face in this image. Try a different image, or a different crop.")
+	alert("The tracking had problems converging on a face in this image. Try a different image, or a different crop.");
+	location.reload();
 }, false);
 
 // detect if tracker has converged
@@ -37,17 +37,22 @@ var drawRequest;
 function animate(box) {
 	ctrack_detect.start(document.getElementById('convergence_image'), box);
 	drawLoop();
+
+	//User has to reload page to do another converge.
+	$('.samples').hide();
+	$('.start').hide();
 }
 
 function drawLoop() {
 	drawRequest = requestAnimFrame(drawLoop);
-	overlayCC.clearRect(0, 0, 720, 576);
+	overlayCC.clearRect(0, 0, 600, 450);
 	if (ctrack_detect.getCurrentPosition()) {
 		ctrack_detect.draw(overlay);
 	}
 }
 
 function useSampleImage(sample) {
+	localStorage.clear();
 	if (sample) {
 		cc.clearRect(0,0,600,450);
 		var img = new Image(),
@@ -56,6 +61,9 @@ function useSampleImage(sample) {
 
 		img.onload = function() {
 			cc.drawImage(img,0,0,imgWidth,imgHeight);
+			var canvas = document.getElementById('convergence_image')
+			//console.log(canvas.toDataURL());
+			localStorage.setItem('uploaded_face', canvas.toDataURL());
 		};
 		img.src = 'img/'+sample+'.jpg';
 
