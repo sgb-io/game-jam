@@ -34,8 +34,8 @@ ctrack_detect.init(pModel);
 
 var drawRequest;
 
-function animate(box) {
-	ctrack_detect.start(document.getElementById('convergence_image'), box);
+function animateFace() {
+	ctrack_detect.start(document.getElementById('convergence_image'));
 	drawLoop();
 
 	//User has to reload page to do another converge.
