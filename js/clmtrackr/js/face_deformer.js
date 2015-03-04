@@ -20,11 +20,6 @@ var faceDeformer = function() {
   }
 
   this.load = function(element, points, pModel, vertices) {
-
-    if (typeof(element) === "undefined" || element.length === 0) {
-      throw new Error('faceDeformer element wasn\'t ready!');
-    }
-
     pdmModel = pModel;
     if (vertices) {
       verticeMap = vertices;
@@ -104,7 +99,11 @@ var faceDeformer = function() {
 
       var gridVertexShader = loadShader(gl, gridVertexShaderProg, gl.VERTEX_SHADER);
       var gridFragmentShader = loadShader(gl, gridFragmentShaderProg, gl.FRAGMENT_SHADER);
-      gridProgram = createProgram(gl, [gridVertexShader, gridFragmentShader]);
+      try {
+        gridProgram = createProgram(gl, [gridVertexShader, gridFragmentShader]);
+      } catch(err) {
+        alert("There was a problem setting up the webGL programs. Maybe you should try it in another browser. :(");
+      }
 
       gridCoordbuffer = gl.createBuffer();
 
